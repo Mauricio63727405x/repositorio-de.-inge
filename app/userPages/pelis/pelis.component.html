@@ -1,0 +1,29 @@
+
+<div class="main">
+    <div style="display: grid; place-items: center;" class="izq">
+        <div id="search">
+            <input [(ngModel)]="search" (ngModelChange)="onSearch()" type="text" placeholder="Buscar">
+        </div>
+    </div>
+    <br>
+    <div id="" class="sections">
+        <br>
+        <div id="extrenos" class="movie-list">
+            <ng-container *ngFor="let movie of movies | keyvalue">
+                <div class="content">
+                    <div class="container" (click)="reproductor(movie.value.title, movie.value.description, movie.value.category, movie.value.poster, movie.value.video)">
+                        <img [src]="movie.value.poster" alt="Avatar" class="image">
+                        <div class="overlay">{{movie.value.title}}</div>
+                    </div>
+                </div>
+            </ng-container>
+            
+        </div>
+    </div>   
+    <div class="pagination">
+        <button (click)="onPageChange(p - 1)" [disabled]="p === 1"><b>ATRAS</b></button>
+        <span><b>PAGINA {{ p }} DE {{ getTotalPages() }}</b></span>
+        <button (click)="onPageChange(p + 1)" [disabled]="p >= getTotalPages()"><b>SIGUIENTE</b></button>
+    </div>
+    <br>
+</div>
